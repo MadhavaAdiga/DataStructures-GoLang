@@ -71,9 +71,9 @@ func (list *DoublyLinkedList) InsertAtTail(value interface{}) error {
 }
 
 /*
-Pop is a method to delete first node in the  doubly linked list and returns a value
+Remove is a method to delete first node in the  doubly linked list and returns a value
 */
-func (list *DoublyLinkedList) Pop() (interface{}, error) {
+func (list *DoublyLinkedList) Remove() (interface{}, error) {
 	if list.length == 0 {
 		return nil, fmt.Errorf("No value in list to pop")
 	}
@@ -88,9 +88,9 @@ func (list *DoublyLinkedList) Pop() (interface{}, error) {
 }
 
 /*
-DeleteByValue is a method to delete a node fromdoubly linked list by value
+RemoveByValue is a method to delete a node fromdoubly linked list by value
 */
-func (list *DoublyLinkedList) DeleteByValue(value interface{}) (bool, error) {
+func (list *DoublyLinkedList) RemoveByValue(value interface{}) (bool, error) {
 	if list.length == 0 {
 		return false, fmt.Errorf("No value in list to delete")
 	}
@@ -131,9 +131,9 @@ func (list *DoublyLinkedList) DeleteByValue(value interface{}) (bool, error) {
 }
 
 /*
-Poll is a method to delete last node in the  doubly linked list and returns a value
+RemoveLast is a method to delete last node in the  doubly linked list and returns a value
 */
-func (list *DoublyLinkedList) Poll() (interface{}, error) {
+func (list *DoublyLinkedList) RemoveLast() (interface{}, error) {
 	if list.length == 0 {
 		return nil, fmt.Errorf("No value in list to delete")
 	}
@@ -174,16 +174,16 @@ func (list DoublyLinkedList) PrintReverse() {
 }
 
 /*
-PeekHead is a method to return the head of a linked list
+Head is a method to return the head of a linked list
 */
-func (list DoublyLinkedList) PeekHead() interface{} {
+func (list DoublyLinkedList) Head() interface{} {
 	return list.head.data
 }
 
 /*
-PeekTail is a method to return the head of a linked list
+Tail is a method to return the head of a linked list
 */
-func (list DoublyLinkedList) PeekTail() interface{} {
+func (list DoublyLinkedList) Tail() interface{} {
 	return list.tail.data
 }
 
@@ -202,8 +202,8 @@ func (list DoublyLinkedList) PrintTail() {
 }
 
 /*
-GetLength is a mthod to return length of a linked list
+Length is a mthod to return length of a linked list
 */
-func (list DoublyLinkedList) GetLength() int {
+func (list DoublyLinkedList) Length() int {
 	return list.length
 }

@@ -10,6 +10,7 @@ LinkedList is a singly linked list
 */
 type LinkedList struct {
 	head   *node
+	tail   *node
 	length int
 }
 
@@ -23,6 +24,7 @@ func (list *LinkedList) Insert(value interface{}) error {
 
 	if list.head == nil {
 		list.head = newNode
+		list.tail = newNode
 		list.length++
 		return nil
 	}
@@ -66,14 +68,15 @@ func (list *LinkedList) InsertAtEnd(value interface{}) error {
 	}
 
 	current.next = node
+	list.tail = node
 
 	return nil
 }
 
 /*
-Pop is a method to delete first node in the linked list and returns a value
+Remove is a method to delete first node in the linked list and returns a value
 */
-func (list *LinkedList) Pop() (interface{}, error) {
+func (list *LinkedList) Remove() (interface{}, error) {
 	if list.length == 0 {
 		return nil, fmt.Errorf("No value in list to pop")
 	}
@@ -86,9 +89,9 @@ func (list *LinkedList) Pop() (interface{}, error) {
 }
 
 /*
-DelelteByValue is a method to delete a node in the linked list by value
+RemoveByValue is a method to delete a node in the linked list by value
 */
-func (list *LinkedList) DelelteByValue(value interface{}) (bool, error) {
+func (list *LinkedList) RemoveByValue(value interface{}) (bool, error) {
 	if list.length == 0 {
 		return false, fmt.Errorf("No value in list to delete")
 	}
@@ -112,7 +115,36 @@ func (list *LinkedList) DelelteByValue(value interface{}) (bool, error) {
 	current.next = current.next.next
 	list.length--
 
+	if current.next == nil {
+		list.tail = current
+	}
+
 	return true, nil
+}
+
+/*
+RemoveLast is a method to remove tail node from linked list
+*/
+func (list *LinkedList) RemoveLast() (interface{}, error) {
+	if list.length == 0 {
+		return nil, fmt.Errorf("No value in list to pop")
+	}
+
+	var current *node = list.head
+
+	value := list.tail.data
+
+	//loop till tail
+	for current.next.data != value {
+		current = current.next
+	}
+
+	current.next = current.next.next
+	list.length--
+
+	list.tail = current
+
+	return value, nil
 }
 
 /*
@@ -129,8 +161,22 @@ func (list LinkedList) PrintList() {
 }
 
 /*
-GetLength is a mthod to return length of a linked list
+PrintTail is a method that prints a linked list last value
 */
-func (list LinkedList) GetLength() int {
+func (list LinkedList) PrintTail() {
+	fmt.Println(list.tail.data)
+}
+
+/*
+Length is a method to return length of a linked list
+*/
+func (list LinkedList) Length() int {
 	return list.length
+}
+
+/*
+GetHead is a method to return head value of a linked list
+*/
+func (list LinkedList) GetHead() interface{} {
+	return list.head.data
 }
