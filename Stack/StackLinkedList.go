@@ -1,6 +1,8 @@
 package stack
 
 import (
+	"fmt"
+
 	linkedlist "github.com/MadhavaAdiga/DataStructure-GoLang/LinkedList"
 )
 
@@ -27,6 +29,10 @@ func (stack *LinkedListImpl) Push(element interface{}) error {
 Pop is a method to remove an element from top of stack
 */
 func (stack *LinkedListImpl) Pop() (interface{}, error) {
+	if stack.Size() == 0 {
+		return nil, fmt.Errorf("No value in stack to pop")
+	}
+	//remove the first node from the linked list to pop top element of from stack
 	value, err := stack.element.Remove()
 
 	return value, err

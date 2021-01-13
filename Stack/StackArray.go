@@ -31,9 +31,13 @@ func (stack *ArrayImpl) Push(element interface{}) error {
 Pop is a method to remove an element from top of stack
 */
 func (stack *ArrayImpl) Pop() (interface{}, error) {
+	if stack.Size() == 0 {
+		return nil, fmt.Errorf("No value in stack to pop")
+	}
+
 	n := len(stack.element)
 	value := stack.element[n-1]
-
+	// remove the last item from array to pop of the top element from stack
 	stack.element = stack.element[:n-1]
 
 	return value, nil
