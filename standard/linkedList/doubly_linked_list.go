@@ -179,7 +179,7 @@ func (list *DoublyLinkedList) Contains(ele interface{}) bool {
 	return v != -1
 }
 
-func (list *DoublyLinkedList) elementAt(position int) (interface{}, error) {
+func (list *DoublyLinkedList) ElementAt(position int) (interface{}, error) {
 	if position < 0 || position >= list.size {
 		return nil, fmt.Errorf("index is out of bound")
 	}

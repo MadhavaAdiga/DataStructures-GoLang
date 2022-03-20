@@ -16,7 +16,7 @@ type LinkedList interface {
 	RemoveFirst() (interface{}, error)
 	IndexOf(interface{}) (int, error)
 	Contains(interface{}) bool
-	elementAt(int) (interface{}, error)
+	ElementAt(int) (interface{}, error)
 	Size() int
 	IsEmpty() bool
 	standard.Collection
@@ -41,7 +41,7 @@ func (iterator *linkedListIterator) HasNext() bool {
 
 // iterator method to get node data
 func (iterator *linkedListIterator) GetNext() interface{} {
-	v, error := iterator.list.elementAt(iterator.index)
+	v, error := iterator.list.ElementAt(iterator.index)
 	if error != nil {
 		fmt.Print(error)
 		return nil

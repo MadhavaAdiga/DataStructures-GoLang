@@ -165,7 +165,7 @@ func (list *SinglyLinkedList) Contains(ele interface{}) bool {
 	return v != -1
 }
 
-func (list *SinglyLinkedList) elementAt(position int) (interface{}, error) {
+func (list *SinglyLinkedList) ElementAt(position int) (interface{}, error) {
 	if position < 0 || position >= list.size {
 		return nil, fmt.Errorf("index is out of bound")
 	}
