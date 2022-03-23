@@ -80,4 +80,5 @@ func TestIterator(t *testing.T) {
 
 func createStack() stack.Stack {
 	return stack.NewListStack()
+	// return stack.NewArrayStack()
 }

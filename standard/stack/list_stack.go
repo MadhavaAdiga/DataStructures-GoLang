@@ -7,21 +7,21 @@ import (
 	linkedlist "com.github/MadhavaAdiga/GolangDS/standard/linkedList"
 )
 
-type ListStack struct {
+type LinkedListImpl struct {
 	list linkedlist.LinkedList
 }
 
 func NewListStack() Stack {
-	return &ListStack{
+	return &LinkedListImpl{
 		list: linkedlist.NewSLinkedList(),
 	}
 }
 
-func (stack *ListStack) Push(ele interface{}) error {
+func (stack *LinkedListImpl) Push(ele interface{}) error {
 	return stack.list.Add(ele)
 }
 
-func (stack *ListStack) Pop() (interface{}, error) {
+func (stack *LinkedListImpl) Pop() (interface{}, error) {
 	v, err := stack.list.Remove()
 	if err != nil {
 		return nil, fmt.Errorf("stack is empty")
@@ -29,47 +29,25 @@ func (stack *ListStack) Pop() (interface{}, error) {
 	return v, nil
 }
 
-func (stack *ListStack) Peek() (interface{}, error) {
+func (stack *LinkedListImpl) Peek() (interface{}, error) {
 	return stack.list.GetTail()
 }
 
-func (stack *ListStack) IsEmpty() bool {
+func (stack *LinkedListImpl) IsEmpty() bool {
 	return stack.list.Size() == 0
 }
 
-func (stack *ListStack) Size() int {
+func (stack *LinkedListImpl) Size() int {
 	return stack.list.Size()
 }
 
-func (stack *ListStack) CreateIterator() standard.Iterator {
-	return newStackIterator(stack.list)
+func (stack *LinkedListImpl) elementAt(index int) (interface{}, error) {
+	return stack.list.ElementAt(index)
 }
 
-type ListStackIterator struct {
-	index int
-	list  linkedlist.LinkedList
+func (stack *LinkedListImpl) CreateIterator() standard.Iterator {
+	return newStackIterator(stack)
 }
 
-func newStackIterator(list linkedlist.LinkedList) *ListStackIterator {
-	return &ListStackIterator{
-		index: list.Size() - 1,
-		list:  list,
-	}
-}
-
-func (iterator *ListStackIterator) HasNext() bool {
-	return iterator.index >= 0
-}
-
-func (iterator *ListStackIterator) GetNext() interface{} {
-	v, err := iterator.list.ElementAt(iterator.index)
-	if err != nil {
-		fmt.Print("stack is empty")
-		return nil
-	}
-	iterator.index--
-	return v
-}
-
-var _ Stack = (*ListStack)(nil)
-var _ standard.Collection = (*ListStack)(nil)
+var _ Stack = (*LinkedListImpl)(nil)
+var _ standard.Collection = (*LinkedListImpl)(nil)
