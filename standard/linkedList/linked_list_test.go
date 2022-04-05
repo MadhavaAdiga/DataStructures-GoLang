@@ -183,6 +183,6 @@ func TestIterator(t *testing.T) {
 }
 
 func createLinkedList() linkedlist.LinkedList {
-	// return linkedlist.NewDLinkedList()
-	return linkedlist.NewSLinkedList()
+	return linkedlist.NewDLinkedList()
+	// return linkedlist.NewSLinkedList()
 }
