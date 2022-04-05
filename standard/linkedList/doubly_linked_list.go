@@ -85,9 +85,9 @@ func (list *DoublyLinkedList) Remove() (interface{}, error) {
 
 	if list.IsEmpty() {
 		list.head = nil
+	} else {
+		list.tail.next = nil
 	}
-	list.tail.next = nil
-
 	return data, nil
 }
 
