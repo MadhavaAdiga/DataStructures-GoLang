@@ -81,7 +81,15 @@ func TestRemoveLast(t *testing.T) {
 	require.Equal(t, 25, v)
 	require.NoError(t, err)
 
-	require.Equal(t, 2, list.Size())
+	v, err = list.Remove()
+	require.Equal(t, 15, v)
+	require.NoError(t, err)
+
+	v, err = list.Remove()
+	require.Equal(t, 5, v)
+	require.NoError(t, err)
+
+	require.Equal(t, 0, list.Size())
 }
 
 func TestRemoveAt(t *testing.T) {
@@ -141,7 +149,8 @@ func TestContains(t *testing.T) {
 	list.Add(5)
 	list.Add(15)
 	list.Add(25)
-	list.Add(35)
+	err := list.Add(nil)
+	require.Error(t, err)
 	list.Add(45)
 
 	require.False(t, list.Contains(3))

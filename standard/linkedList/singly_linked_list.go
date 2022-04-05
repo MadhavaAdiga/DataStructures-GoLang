@@ -79,7 +79,7 @@ func (list *SinglyLinkedList) Remove() (interface{}, error) {
 
 	pointer := list.head
 	// iterate till last but one one node
-	for pointer.next.next != nil {
+	for pointer.next != nil && pointer.next.next != nil {
 		pointer = pointer.next
 	}
 
