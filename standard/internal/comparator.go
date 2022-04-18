@@ -31,9 +31,13 @@ func GetComparator(a interface{}) Comparator {
 	case float64:
 		return Float64Comparator
 
-	default:
+	case string:
 		return StringComparator
+
+	default:
+		return nil
 	}
+
 }
 
 func IntComparator(a, b interface{}) int {
