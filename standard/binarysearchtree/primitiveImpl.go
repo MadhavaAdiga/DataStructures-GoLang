@@ -152,10 +152,14 @@ func (tree *PrimitiveImpl) Remove(ele interface{}) bool {
 		}
 	} else if curr.left == nil && curr.right == nil {
 		// when node to be removed is the leaf node
-		if curr == prev.left { // check if found node(curr) is parents left or right child
-			prev.left = nil
+		if prev == nil {
+			tree.root = nil
 		} else {
-			prev.right = nil
+			if curr == prev.left { // check if found node(curr) is parents left or right child
+				prev.left = nil
+			} else {
+				prev.right = nil
+			}
 		}
 	}
 	tree.nodeCount--

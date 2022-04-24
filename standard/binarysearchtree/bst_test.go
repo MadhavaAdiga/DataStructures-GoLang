@@ -48,6 +48,12 @@ func TestAdd(t *testing.T) {
 func TestRemove(t *testing.T) {
 	bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
 
+	bst.Add(1)
+	require.True(t, bst.Contains(1))
+	require.True(t, bst.Remove(1))
+	require.Equal(t, 0, bst.Size())
+	require.False(t, bst.Contains(1))
+
 	bst.Add(5)
 
 	require.True(t, bst.Contains(5))
