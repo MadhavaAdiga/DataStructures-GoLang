@@ -9,23 +9,23 @@ const (
 )
 
 type BinarySearchTree interface {
-	Add(interface{}) bool
-	Remove(interface{}) bool
+	Add(Comparable) bool
+	Remove(Comparable) bool
 	IsEmpty() bool
-	Contains(interface{}) bool
+	Contains(Comparable) bool
 	Size() int
 }
 
-func GetBst(t TreeType) BinarySearchTree {
+// func GetBst(t TreeType) BinarySearchTree {
 
-	switch t {
-	case PRIMITIVE:
-		return newPrimitiveImpl()
+// 	// switch t {
+// 	// case PRIMITIVE:
+// 	// 	return newPrimitiveImpl()
 
-	case CUSTOME:
-		return newCustomImpl()
+// 	// case CUSTOME:
+// 	// 	return newCustomImpl()
 
-	default:
-		return nil
-	}
-}
+// 	// default:
+// 	// 	return nil
+// 	// }
+// }

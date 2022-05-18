@@ -2,21 +2,19 @@ package binarysearchtree
 
 import (
 	"reflect"
-
-	"com.github/MadhavaAdiga/GolangDS/standard/internal"
 )
 
 type PrimitiveImpl struct {
-	nodeCount  int
-	root       *primitiveNode
-	comparator internal.Comparator
+	nodeCount int
+	root      *primitiveNode
+	// comparator internal.Comparator
 }
 
-func newPrimitiveImpl() BinarySearchTree {
+func NewPrimitiveImpl() *PrimitiveImpl {
 	return &PrimitiveImpl{}
 }
 
-func (tree *PrimitiveImpl) Add(ele interface{}) bool {
+func (tree *PrimitiveImpl) Add(ele Comparable) bool {
 	if !tree.typeCheck(ele) {
 		return false
 	}
@@ -32,7 +30,8 @@ func (tree *PrimitiveImpl) Add(ele interface{}) bool {
 	// find the leafnode to insert
 	for curr != nil {
 		prev = curr
-		cmp := tree.comparator(ele, curr.data)
+		// cmp := tree.comparator(ele, curr.data)
+		cmp := ele.Compare(curr.data)
 
 		if cmp < 0 {
 			curr = curr.left
@@ -44,7 +43,8 @@ func (tree *PrimitiveImpl) Add(ele interface{}) bool {
 	node := newPNode(ele)
 
 	if prev != nil {
-		cmp := tree.comparator(ele, prev.data)
+		// cmp := tree.comparator(ele, prev.data)
+		cmp := ele.Compare(prev.data)
 
 		if cmp < 0 {
 			prev.left = node
@@ -53,13 +53,13 @@ func (tree *PrimitiveImpl) Add(ele interface{}) bool {
 		}
 	} else {
 		tree.root = node
-		tree.comparator = internal.GetComparator(ele)
+		// tree.comparator = internal.GetComparator(ele)
 	}
 	tree.nodeCount++
 	return true
 }
 
-func (tree *PrimitiveImpl) Remove(ele interface{}) bool {
+func (tree *PrimitiveImpl) Remove(ele Comparable) bool {
 	if !tree.typeCheck(ele) {
 		return false
 	}
@@ -69,7 +69,8 @@ func (tree *PrimitiveImpl) Remove(ele interface{}) bool {
 
 	// find the node to delete
 	for curr != nil {
-		cmp := tree.comparator(ele, curr.data)
+		// cmp := tree.comparator(ele, curr.data)
+		cmp := ele.Compare(curr.data)
 
 		if cmp < 0 {
 			prev = curr
@@ -172,11 +173,12 @@ func (tree *PrimitiveImpl) IsEmpty() bool {
 	return tree.root == nil
 }
 
-func (tree *PrimitiveImpl) Contains(ele interface{}) bool {
+func (tree *PrimitiveImpl) Contains(ele Comparable) bool {
 	pointer := tree.root
 
 	for pointer != nil {
-		cmp := tree.comparator(ele, pointer.data)
+		// cmp := tree.comparator(ele, pointer.data)
+		cmp := ele.Compare(pointer.data)
 
 		if cmp < 0 {
 			pointer = pointer.left
@@ -194,7 +196,7 @@ func (tree *PrimitiveImpl) Size() int {
 	return tree.nodeCount
 }
 
-func (tree *PrimitiveImpl) typeCheck(ele interface{}) bool {
+func (tree *PrimitiveImpl) typeCheck(ele Comparable) bool {
 	if tree.IsEmpty() {
 		return true
 	}
