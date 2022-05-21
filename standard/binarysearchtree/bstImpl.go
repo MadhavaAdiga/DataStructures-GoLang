@@ -2,19 +2,21 @@ package binarysearchtree
 
 import (
 	"reflect"
+
+	"com.github/MadhavaAdiga/GolangDS/standard"
 )
 
-type PrimitiveImpl struct {
+type BstImpl struct {
 	nodeCount int
 	root      *primitiveNode
 	// comparator internal.Comparator
 }
 
-func NewPrimitiveImpl() *PrimitiveImpl {
-	return &PrimitiveImpl{}
+func NewPrimitiveImpl() *BstImpl {
+	return &BstImpl{}
 }
 
-func (tree *PrimitiveImpl) Add(ele Comparable) bool {
+func (tree *BstImpl) Add(ele standard.Comparable) bool {
 	if !tree.typeCheck(ele) {
 		return false
 	}
@@ -59,7 +61,7 @@ func (tree *PrimitiveImpl) Add(ele Comparable) bool {
 	return true
 }
 
-func (tree *PrimitiveImpl) Remove(ele Comparable) bool {
+func (tree *BstImpl) Remove(ele standard.Comparable) bool {
 	if !tree.typeCheck(ele) {
 		return false
 	}
@@ -168,12 +170,12 @@ func (tree *PrimitiveImpl) Remove(ele Comparable) bool {
 	return true
 }
 
-func (tree *PrimitiveImpl) IsEmpty() bool {
+func (tree *BstImpl) IsEmpty() bool {
 	// return (tree.root == primitiveNode{})
 	return tree.root == nil
 }
 
-func (tree *PrimitiveImpl) Contains(ele Comparable) bool {
+func (tree *BstImpl) Contains(ele standard.Comparable) bool {
 	pointer := tree.root
 
 	for pointer != nil {
@@ -192,11 +194,11 @@ func (tree *PrimitiveImpl) Contains(ele Comparable) bool {
 	return false
 }
 
-func (tree *PrimitiveImpl) Size() int {
+func (tree *BstImpl) Size() int {
 	return tree.nodeCount
 }
 
-func (tree *PrimitiveImpl) typeCheck(ele Comparable) bool {
+func (tree *BstImpl) typeCheck(ele standard.Comparable) bool {
 	if tree.IsEmpty() {
 		return true
 	}

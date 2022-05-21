@@ -1,5 +1,7 @@
 package binarysearchtree
 
+import "com.github/MadhavaAdiga/GolangDS/standard"
+
 type TreeType int8
 
 const (
@@ -9,23 +11,9 @@ const (
 )
 
 type BinarySearchTree interface {
-	Add(Comparable) bool
-	Remove(Comparable) bool
+	Add(standard.Comparable) bool
+	Remove(standard.Comparable) bool
 	IsEmpty() bool
-	Contains(Comparable) bool
+	Contains(standard.Comparable) bool
 	Size() int
 }
-
-// func GetBst(t TreeType) BinarySearchTree {
-
-// 	// switch t {
-// 	// case PRIMITIVE:
-// 	// 	return newPrimitiveImpl()
-
-// 	// case CUSTOME:
-// 	// 	return newCustomImpl()
-
-// 	// default:
-// 	// 	return nil
-// 	// }
-// }

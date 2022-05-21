@@ -1,12 +1,12 @@
 package standard
 
-type Comparer func(a interface{}) int32
+type Comparer func(a Comparable) int32
 
 type Comparable struct {
-	val     interface{}
-	compare Comparer
+	Val     interface{}
+	Compare Comparer
 }
 
-func NewComparable(comparer Comparer) *Comparable {
-	return &Comparable{compare: comparer}
+func NewComparable(v interface{}, comparer Comparer) *Comparable {
+	return &Comparable{Val: v, Compare: comparer}
 }

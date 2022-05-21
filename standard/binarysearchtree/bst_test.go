@@ -3,34 +3,11 @@ package binarysearchtree_test
 import (
 	"testing"
 
+	"com.github/MadhavaAdiga/GolangDS/standard"
 	"com.github/MadhavaAdiga/GolangDS/standard/binarysearchtree"
 	"com.github/MadhavaAdiga/GolangDS/standard/internal"
 	"github.com/stretchr/testify/require"
 )
-
-// func TestDemo(t *testing.T) {
-
-// 	bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
-
-// 	require.True(t, bst.IsEmpty())
-// 	require.True(t, bst.Add(3))
-
-// 	require.False(t, bst.IsEmpty())
-
-// 	require.False(t, bst.Add(3))
-
-// 	require.True(t, bst.Add(5))
-// 	require.False(t, bst.Add(5))
-// }
-
-func createComparable(i int) *binarysearchtree.Comparable {
-	c1 := internal.GetComparator(i)
-	a := func(c binarysearchtree.Comparable) int32 {
-		return int32(c1(i, c.Val))
-	}
-
-	return binarysearchtree.NewComparable(i, a)
-}
 
 func TestAdd(t *testing.T) {
 	// bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
@@ -62,7 +39,7 @@ func TestRemove(t *testing.T) {
 	require.False(t, bst.Contains(a))
 
 	stub := []int{5, 4, 3, 9, 7, 6, 8}
-	var comaprables []binarysearchtree.Comparable
+	var comaprables []standard.Comparable
 
 	for _, v := range stub {
 		a1 := createComparable(v)
@@ -143,4 +120,42 @@ func TestContains(t *testing.T) {
 	// require.True(t, bst.Contains(3))
 
 	// require.False(t, bst.Contains(0))
+}
+
+func BenchmarkBst(b *testing.B) {
+	// bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
+
+	bst := binarysearchtree.NewPrimitiveImpl()
+
+	b.Run("", func(b *testing.B) {
+		stub := []int{5, 4, 3, 9, 7, 6, 8}
+		var comaprables []standard.Comparable
+
+		for _, v := range stub {
+			a1 := createComparable(v)
+			comaprables = append(comaprables, *a1)
+
+			bst.Add(*a1)
+			bst.Contains(*a1)
+		}
+		bst.Size()
+
+		// index no to delete
+		sequence := []int{3, 5, 0}
+
+		for _, v := range sequence {
+			bst.Remove(comaprables[v])
+		}
+
+	})
+
+}
+
+func createComparable(i int) *standard.Comparable {
+	c1 := internal.GetComparator(i)
+	a := func(c standard.Comparable) int32 {
+		return int32(c1(i, c.Val))
+	}
+
+	return standard.NewComparable(i, a)
 }
