@@ -1,4 +1,4 @@
-package internal
+package utils
 
 type Comparator func(a, b interface{}) int
 

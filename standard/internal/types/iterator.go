@@ -1,4 +1,4 @@
-package standard
+package types
 
 type Iterator interface {
 	HasNext() bool

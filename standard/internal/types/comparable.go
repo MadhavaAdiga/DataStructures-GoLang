@@ -1,4 +1,4 @@
-package standard
+package types
 
 type Comparer func(a Comparable) int32
 

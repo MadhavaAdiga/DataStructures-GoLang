@@ -3,7 +3,7 @@ package linkedlist
 import (
 	"fmt"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type LinkedList interface {
@@ -19,7 +19,7 @@ type LinkedList interface {
 	ElementAt(int) (interface{}, error)
 	Size() int
 	IsEmpty() bool
-	standard.Collection
+	types.Collection
 }
 
 type linkedListIterator struct {

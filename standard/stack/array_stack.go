@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type ArrayImpl struct {
@@ -69,7 +69,7 @@ func (stack *ArrayImpl) elementAt(index int) (interface{}, error) {
 	return stack.arr[index], nil
 }
 
-func (stack *ArrayImpl) CreateIterator() standard.Iterator { return newStackIterator(stack) }
+func (stack *ArrayImpl) CreateIterator() types.Iterator { return newStackIterator(stack) }
 
 func (stack *ArrayImpl) checkType(ele interface{}) bool {
 	if len(stack.arr) == 0 {
@@ -79,4 +79,4 @@ func (stack *ArrayImpl) checkType(ele interface{}) bool {
 }
 
 var _ Stack = (*ArrayImpl)(nil)
-var _ standard.Collection = (*ArrayImpl)(nil)
+var _ types.Collection = (*ArrayImpl)(nil)

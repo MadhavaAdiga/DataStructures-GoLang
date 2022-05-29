@@ -1,22 +1,22 @@
-package binarysearchtree
+package bst
 
 import (
 	"reflect"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type BstImpl struct {
 	nodeCount int
-	root      *primitiveNode
+	root      *node
 	// comparator internal.Comparator
 }
 
-func NewPrimitiveImpl() *BstImpl {
+func NewBstImpl() *BstImpl {
 	return &BstImpl{}
 }
 
-func (tree *BstImpl) Add(ele standard.Comparable) bool {
+func (tree *BstImpl) Add(ele types.Comparable) bool {
 	if !tree.typeCheck(ele) {
 		return false
 	}
@@ -26,8 +26,8 @@ func (tree *BstImpl) Add(ele standard.Comparable) bool {
 		return false
 	}
 
-	var prev *primitiveNode = nil // parent pointer of traversing node
-	curr := tree.root             // traversing node
+	var prev *node = nil // parent pointer of traversing node
+	curr := tree.root    // traversing node
 
 	// find the leafnode to insert
 	for curr != nil {
@@ -61,13 +61,13 @@ func (tree *BstImpl) Add(ele standard.Comparable) bool {
 	return true
 }
 
-func (tree *BstImpl) Remove(ele standard.Comparable) bool {
+func (tree *BstImpl) Remove(ele types.Comparable) bool {
 	if !tree.typeCheck(ele) {
 		return false
 	}
 
-	curr := tree.root             // node to be found
-	var prev *primitiveNode = nil // parent of found node
+	curr := tree.root    // node to be found
+	var prev *node = nil // parent of found node
 
 	// find the node to delete
 	for curr != nil {
@@ -96,8 +96,8 @@ func (tree *BstImpl) Remove(ele standard.Comparable) bool {
 		// choose either one
 
 		//find smallest in right sub tree
-		var parent *primitiveNode = nil // parent of the selected child
-		pointer := curr.right           // found nodes right child, used to find the leaf node in selected subtree
+		var parent *node = nil // parent of the selected child
+		pointer := curr.right  // found nodes right child, used to find the leaf node in selected subtree
 
 		// find the smallest leaf node
 		for pointer.left != nil {
@@ -137,7 +137,7 @@ func (tree *BstImpl) Remove(ele standard.Comparable) bool {
 		// largest child in leftsubtree
 		curr.data = pointer.data
 	} else if curr.left != nil || curr.right != nil {
-		var pointer *primitiveNode
+		var pointer *node
 
 		// case where either only left or right sub tree exists
 		if curr.left == nil {
@@ -175,7 +175,7 @@ func (tree *BstImpl) IsEmpty() bool {
 	return tree.root == nil
 }
 
-func (tree *BstImpl) Contains(ele standard.Comparable) bool {
+func (tree *BstImpl) Contains(ele types.Comparable) bool {
 	pointer := tree.root
 
 	for pointer != nil {
@@ -198,7 +198,7 @@ func (tree *BstImpl) Size() int {
 	return tree.nodeCount
 }
 
-func (tree *BstImpl) typeCheck(ele standard.Comparable) bool {
+func (tree *BstImpl) typeCheck(ele types.Comparable) bool {
 	if tree.IsEmpty() {
 		return true
 	}

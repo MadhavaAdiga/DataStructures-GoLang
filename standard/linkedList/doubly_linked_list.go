@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type DoublyLinkedList struct {
@@ -213,7 +213,7 @@ func (list *DoublyLinkedList) IsEmpty() bool {
 	return list.size == 0
 }
 
-func (list *DoublyLinkedList) CreateIterator() standard.Iterator {
+func (list *DoublyLinkedList) CreateIterator() types.Iterator {
 	return newLinkedListIterator(list)
 }
 
@@ -226,4 +226,4 @@ func (list *DoublyLinkedList) typeCheck(ele interface{}) bool {
 
 // checking for implementation
 var _ LinkedList = (*DoublyLinkedList)(nil)
-var _ standard.Collection = (*DoublyLinkedList)(nil)
+var _ types.Collection = (*DoublyLinkedList)(nil)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type ArrayImpl struct {
@@ -67,7 +67,7 @@ func (queue *ArrayImpl) IsEmpty() bool {
 	return queue.Size() == 0
 }
 
-func (queue *ArrayImpl) CreateIterator() standard.Iterator {
+func (queue *ArrayImpl) CreateIterator() types.Iterator {
 	return newQueueIterator(queue)
 }
 
@@ -79,4 +79,4 @@ func (queue *ArrayImpl) checkType(ele interface{}) bool {
 }
 
 var _ Queue = (*ArrayImpl)(nil)
-var _ standard.Collection = (*ArrayImpl)(nil)
+var _ types.Collection = (*ArrayImpl)(nil)

@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"reflect"
 
-	"com.github/MadhavaAdiga/GolangDS/standard/internal"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/utils"
 )
 
 //MinHeap - A binary min heap
 type BinaryHeap struct {
 	size       int
 	arr        []interface{}
-	comparator internal.Comparator
+	comparator utils.Comparator
 }
 
 func NewBinaryHeap(arr []interface{}) Heap {
@@ -22,9 +22,9 @@ func NewBinaryHeap(arr []interface{}) Heap {
 
 	if n != 0 {
 		heap.arr = arr
-		heap.comparator = internal.GetComparator(arr[0])
+		heap.comparator = utils.GetComparator(arr[0])
 		// heapify
-		for i := internal.Max(0, (n/2)-1); i >= 0; i-- {
+		for i := utils.Max(0, (n/2)-1); i >= 0; i-- {
 			heap.sink(i)
 		}
 	}
@@ -34,7 +34,7 @@ func NewBinaryHeap(arr []interface{}) Heap {
 // NewMinHeapWithComparator - use when required to pass a custom comparator
 // ex: creating a heap containg a struct
 // note: use NewMinHeap() when heap contains primitive types
-func NewBinaryHeapWithComparator(arr []interface{}, comparator internal.Comparator) Heap {
+func NewBinaryHeapWithComparator(arr []interface{}, comparator utils.Comparator) Heap {
 	n := len(arr)
 	heap := &BinaryHeap{
 		size: n,
@@ -45,7 +45,7 @@ func NewBinaryHeapWithComparator(arr []interface{}, comparator internal.Comparat
 	if n != 0 {
 		heap.arr = arr
 		// heapify
-		for i := internal.Max(0, (n/2)-1); i >= 0; i-- {
+		for i := utils.Max(0, (n/2)-1); i >= 0; i-- {
 			heap.sink(i)
 		}
 	}
@@ -58,7 +58,7 @@ func (heap *BinaryHeap) Add(ele interface{}) error {
 	}
 
 	if heap.comparator == nil {
-		heap.comparator = internal.GetComparator(ele)
+		heap.comparator = utils.GetComparator(ele)
 	}
 
 	heap.arr = append(heap.arr, ele)

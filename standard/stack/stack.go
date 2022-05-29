@@ -3,7 +3,7 @@ package stack
 import (
 	"fmt"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type Stack interface {
@@ -13,7 +13,7 @@ type Stack interface {
 	IsEmpty() bool
 	Size() int
 	elementAt(int) (interface{}, error)
-	standard.Collection
+	types.Collection
 }
 
 type ListStackIterator struct {

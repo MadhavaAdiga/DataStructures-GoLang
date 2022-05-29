@@ -1,6 +1,6 @@
 package queue
 
-import "com.github/MadhavaAdiga/GolangDS/standard"
+import "com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 
 type Queue interface {
 	Enqueue(interface{}) error
@@ -9,7 +9,7 @@ type Queue interface {
 	elementAt(int) (interface{}, error)
 	Size() int
 	IsEmpty() bool
-	standard.Collection
+	types.Collection
 }
 
 type QueueIterator struct {

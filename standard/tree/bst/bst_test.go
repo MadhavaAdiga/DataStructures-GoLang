@@ -1,17 +1,17 @@
-package binarysearchtree_test
+package bst_test
 
 import (
 	"testing"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
-	"com.github/MadhavaAdiga/GolangDS/standard/binarysearchtree"
-	"com.github/MadhavaAdiga/GolangDS/standard/internal"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/utils"
+	binarysearchtree "com.github/MadhavaAdiga/GolangDS/standard/tree/bst"
 	"github.com/stretchr/testify/require"
 )
 
 func TestAdd(t *testing.T) {
 	// bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
-	bst := binarysearchtree.NewPrimitiveImpl()
+	bst := binarysearchtree.NewBstImpl()
 
 	stub := []int{5, 4, 3, 9, 7, 6, 8}
 
@@ -28,7 +28,7 @@ func TestAdd(t *testing.T) {
 func TestRemove(t *testing.T) {
 	// bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
 
-	bst := binarysearchtree.NewPrimitiveImpl()
+	bst := binarysearchtree.NewBstImpl()
 
 	a := *createComparable(0)
 
@@ -39,7 +39,7 @@ func TestRemove(t *testing.T) {
 	require.False(t, bst.Contains(a))
 
 	stub := []int{5, 4, 3, 9, 7, 6, 8}
-	var comaprables []standard.Comparable
+	var comaprables []types.Comparable
 
 	for _, v := range stub {
 		a1 := createComparable(v)
@@ -97,7 +97,7 @@ func TestRemove(t *testing.T) {
 func TestContains(t *testing.T) {
 	// bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
 
-	bst := binarysearchtree.NewPrimitiveImpl()
+	bst := binarysearchtree.NewBstImpl()
 
 	require.False(t, bst.Contains(*createComparable(0)))
 
@@ -125,11 +125,11 @@ func TestContains(t *testing.T) {
 func BenchmarkBst(b *testing.B) {
 	// bst := binarysearchtree.GetBst(binarysearchtree.PRIMITIVE)
 
-	bst := binarysearchtree.NewPrimitiveImpl()
+	bst := binarysearchtree.NewBstImpl()
 
 	b.Run("", func(b *testing.B) {
 		stub := []int{5, 4, 3, 9, 7, 6, 8}
-		var comaprables []standard.Comparable
+		var comaprables []types.Comparable
 
 		for _, v := range stub {
 			a1 := createComparable(v)
@@ -151,11 +151,11 @@ func BenchmarkBst(b *testing.B) {
 
 }
 
-func createComparable(i int) *standard.Comparable {
-	c1 := internal.GetComparator(i)
-	a := func(c standard.Comparable) int32 {
+func createComparable(i int) *types.Comparable {
+	c1 := utils.GetComparator(i)
+	a := func(c types.Comparable) int32 {
 		return int32(c1(i, c.Val))
 	}
 
-	return standard.NewComparable(i, a)
+	return types.NewComparable(i, a)
 }

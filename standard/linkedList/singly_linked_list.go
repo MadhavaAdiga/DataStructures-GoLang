@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 )
 
 type SinglyLinkedList struct {
@@ -191,7 +191,7 @@ func (list *SinglyLinkedList) IsEmpty() bool {
 	return list.size == 0
 }
 
-func (list *SinglyLinkedList) CreateIterator() standard.Iterator {
+func (list *SinglyLinkedList) CreateIterator() types.Iterator {
 	return newLinkedListIterator(list)
 }
 
@@ -204,4 +204,4 @@ func (list *SinglyLinkedList) typeCheck(ele interface{}) bool {
 
 // checking for implementation
 var _ LinkedList = (*SinglyLinkedList)(nil)
-var _ standard.Collection = (*SinglyLinkedList)(nil)
+var _ types.Collection = (*SinglyLinkedList)(nil)

@@ -3,7 +3,7 @@ package queue
 import (
 	"fmt"
 
-	"com.github/MadhavaAdiga/GolangDS/standard"
+	"com.github/MadhavaAdiga/GolangDS/standard/internal/types"
 	linkedlist "com.github/MadhavaAdiga/GolangDS/standard/linkedList"
 )
 
@@ -48,9 +48,9 @@ func (queue *LinkedListImpl) IsEmpty() bool {
 	return queue.Size() == 0
 }
 
-func (queue *LinkedListImpl) CreateIterator() standard.Iterator {
+func (queue *LinkedListImpl) CreateIterator() types.Iterator {
 	return newQueueIterator(queue)
 }
 
 var _ Queue = (*LinkedListImpl)(nil)
-var _ standard.Collection = (*LinkedListImpl)(nil)
+var _ types.Collection = (*LinkedListImpl)(nil)
